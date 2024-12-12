@@ -1,5 +1,7 @@
 package com.finn.springbootmall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.SplittableRandom;
 
@@ -7,7 +9,10 @@ public class User {
 
     private Integer userId;
     private String email;
+
+    @JsonIgnore
     private String password;
+
     private Date createTime;
     private Date lastModifiedDate;
 

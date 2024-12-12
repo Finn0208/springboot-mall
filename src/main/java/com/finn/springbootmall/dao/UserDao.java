@@ -5,6 +5,7 @@ import com.finn.springbootmall.model.User;
 
 public interface UserDao {
 
+    User getUserByEmail(String email);
     User getUserById(Integer userId);
     Integer createUser(UserRegisteRequest userRegisteRequest);
 }
