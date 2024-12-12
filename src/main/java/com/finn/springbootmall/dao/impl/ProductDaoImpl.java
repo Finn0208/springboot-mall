@@ -5,16 +5,16 @@ import com.finn.springbootmall.dto.ProductRequest;
 import com.finn.springbootmall.model.Product;
 import com.finn.springbootmall.rowmapper.ProductRowmapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class ProductDaoImpl implements ProductDao {
@@ -91,5 +91,15 @@ public class ProductDaoImpl implements ProductDao {
 
         jdbcTemplate.update(sql,map);
 
+    }
+
+    @Override
+    public void deleteProductById(Integer productId) {
+        String sql ="DELETE FROM product WHERE product_id = :productId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("productId", productId);
+
+        jdbcTemplate.update(sql,map);
     }
 }
