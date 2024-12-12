@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import util.Page;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
         ProductService productService;
 
         @GetMapping("/products")
-        public ResponseEntity<List<Product>> getProducts(
+        public ResponseEntity<Page<Product>> getProducts(
                 //查詢條件 Filtering
                 @RequestParam(required = false) ProductCategory category,
                 @RequestParam(required = false) String search,
@@ -45,9 +46,20 @@ import java.util.List;
             params.setLimit(limit);
             params.setOffset(offset);
 
+            //取得ProductList
             List <Product> productList = productService.getProducts(params);
 
-            return ResponseEntity.status(HttpStatus.OK).body(productList);
+            //取得Product 總數
+            Integer total = productService.countProduct(params);
+
+            //分頁
+            Page<Product> page =  new Page<>();
+            page.setLimit(limit);
+            page.setOffset(offset);
+            page.setTotal(total);
+            page.setResults(productList);
+
+            return ResponseEntity.status(HttpStatus.OK).body(page);
         }
 
 
