@@ -1,6 +1,7 @@
 package com.finn.springbootmall.controller;
 
 import com.finn.springbootmall.constant.ProductCategory;
+import com.finn.springbootmall.dao.ProductQueryParams;
 import com.finn.springbootmall.dto.ProductRequest;
 import com.finn.springbootmall.model.Product;
 import com.finn.springbootmall.service.ProductService;
@@ -23,7 +24,11 @@ public class ProductController {
            @RequestParam(required = false) ProductCategory category,
            @RequestParam(required = false) String search
     ){
-       List <Product> productList = productService.getProducts(category,search);
+        ProductQueryParams params = new ProductQueryParams();
+        params.setCategory(category);
+        params.setSearch(search);
+
+       List <Product> productList = productService.getProducts(params);
 
        return ResponseEntity.status(HttpStatus.OK).body(productList);
     }

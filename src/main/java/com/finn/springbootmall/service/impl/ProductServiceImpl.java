@@ -1,7 +1,7 @@
 package com.finn.springbootmall.service.impl;
 
-import com.finn.springbootmall.constant.ProductCategory;
 import com.finn.springbootmall.dao.ProductDao;
+import com.finn.springbootmall.dao.ProductQueryParams;
 import com.finn.springbootmall.dto.ProductRequest;
 import com.finn.springbootmall.model.Product;
 import com.finn.springbootmall.service.ProductService;
@@ -17,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category,String search) {
-        return productDao.getProducts(category,search);
+    public List<Product> getProducts(ProductQueryParams params) {
+        return productDao.getProducts(params);
     }
 
     @Override
