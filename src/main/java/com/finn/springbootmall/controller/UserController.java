@@ -1,5 +1,6 @@
 package com.finn.springbootmall.controller;
 
+import com.finn.springbootmall.dto.UserLoginRequest;
 import com.finn.springbootmall.dto.UserRegisteRequest;
 import com.finn.springbootmall.model.User;
 import com.finn.springbootmall.service.UserService;
@@ -26,6 +27,12 @@ public class UserController {
 
         User user = userService.getUserById(userId);
         return ResponseEntity.status(HttpStatus.OK).body(user);
-
     }
+
+@PostMapping("/users/login")
+public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
+        User user = userService.login(userLoginRequest);
+    return ResponseEntity.status(HttpStatus.OK).body(user);
+}
+
 }
