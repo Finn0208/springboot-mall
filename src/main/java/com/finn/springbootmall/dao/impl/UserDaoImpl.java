@@ -1,7 +1,7 @@
 package com.finn.springbootmall.dao.impl;
 
 import com.finn.springbootmall.dao.UserDao;
-import com.finn.springbootmall.dto.UserRegisteRequest;
+import com.finn.springbootmall.dto.UserRegisterRequest;
 import com.finn.springbootmall.model.User;
 import com.finn.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.swing.text.DefaultEditorKit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +25,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(Integer userId) {
         String sql = "SELECT user_id, email, password, created_date, last_modified_date " +
-                "FROM user WHERE user_id = :userId"; // 修正 ": userId" -> ":userId"
+                "FROM `user` WHERE user_id = :userId"; // 修正 ": userId" -> ":userId"
 
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId); // 確保鍵與 SQL 佔位符一致
@@ -43,7 +42,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByEmail(String email) {
         String sql = "SELECT user_id, email, password, created_date, last_modified_date " +
-                "FROM user WHERE email = :email"; // 修正 ": userId" -> ":userId"
+                "FROM `user` WHERE email = :email"; // 修正 ": userId" -> ":userId"
 
         Map<String, Object> map = new HashMap<>();
         map.put("email", email); // 確保鍵與 SQL 佔位符一致
@@ -59,8 +58,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer createUser(UserRegisteRequest userRegisteRequest) {
-        String sql = "INSERT INTO user(email,password,created_date,last_modified_date)"+
+    public Integer createUser(UserRegisterRequest userRegisteRequest) {
+        String sql = "INSERT INTO `user`(email,password,created_date,last_modified_date)"+
                 "VALUES ( :email, :password, :createdDate, :lastModifiedDate)";
 
         Map<String,Object>map = new HashMap<>();

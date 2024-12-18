@@ -2,7 +2,7 @@ package com.finn.springbootmall.service.impl;
 
 import com.finn.springbootmall.dao.UserDao;
 import com.finn.springbootmall.dto.UserLoginRequest;
-import com.finn.springbootmall.dto.UserRegisteRequest;
+import com.finn.springbootmall.dto.UserRegisterRequest;
 import com.finn.springbootmall.model.User;
 import com.finn.springbootmall.service.UserService;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer register(UserRegisteRequest userRegisteRequest) {
+    public Integer register(UserRegisterRequest userRegisteRequest) {
         // 檢查註冊的 Email
         User user = userDao.getUserByEmail(userRegisteRequest.getEmail());
 
