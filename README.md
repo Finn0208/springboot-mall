@@ -1,6 +1,7 @@
 ● 商品管理功能
   - 查詢商品列表
-  - 商品的新增（Create）、查詢（Read）、更新（Update）及刪除（Delete）功
+  - 商品的新增（Create）、查詢（Read）、更新（Update）及刪除（Delete）功能
+  - 
 ● 帳號管理功能
   - 註冊新帳號
   - 使用者登入
